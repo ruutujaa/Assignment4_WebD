@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>Feedback</title>
+  <style>
+    label {	float: left;
+			width: 150px;}
+      #container{
+          width: 700px;
+          margin: auto;
+          background-color: beige;
+      } 
+      main{
+          padding: 50px;
+      }
+	  .rates {
+		  display: flex;
+		  margin-left: 25%;
+	  }
+	  table, th, td{
+		  border: 1px solid black;
+		  border-collapse: collapse;
+		  align-items: center;
+	  }
+	  #data{
+		  font-size: 15px;
+	  }
+  </style>
+ </head>
+ <body>
+ <div id="container">
+	 
+	 <main>
+	 <h2>Feeback</h2>
+	 <h3>Love something? Hate something? Let us know!</h3>
+		 Note : Fields marked with an asterisk(*) are mandatory
+		 <br><br>
+		 <!-- <form method="post" novalidate> -->
+			 <form id="myForm">
+			<label>Title*:</label>
+			<input type="radio" name="title" id="miss" value="miss" required="required"/>Miss
+			<input type="radio" name="title" id="mr" value="mr" required="required"/>Mr.
+			<input type="radio" name="title" id="mrs" value="mrs" required="required"/>Mrs.
+			<br><br>
+			<label for="firstName">First Name*:</label>
+			<input type="text" name="firstName" id="firstName" placeholder="First Name" onblur="validateInputs(this,1,'FName')" required />	
+			<br><br>
+			
+			<div id="errorMsgFName" style="display: none; color: red;">
+			Invalid input for the First Name field. Only text is allowed.
+			<br/><br/>
+			</div>
+
+			<label for="lastName">Last Name*:</label>
+			<input type="text" name="lastName" id="lastName" placeholder="Last Name" onblur="validateInputs(this,2,'LName')" required/>
+			<br><br>
+			
+			<div id="errorMsgLName" style="display: none; color: red;">
+			Invalid input for the Last Name field. Only text is allowed.
+			<br><br>
+			</div>
+
+			<label for="emailId">Email Id*:</label>
+			<input type="text" name="emailId" id="emailId" placeholder="yourname@domain.com" onblur="validateInputs(this,3,'email')" required />
+			<br><br>
+
+			<div id="errorMsgemail" style="display: none; color: red;">
+			Invalid input for the Email ID field. Enter only Northeastern email
+			</div>
+			
+
+			<label for="phoneNumber">Phone Number*:</label>
+			<input type="text" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx" onblur="validateInputs(this,4,'phno')" required />
+			<br><br>
+
+			<div id="errorMsgphno" style="display: none; color: red;">
+			Invalid input for Phone Number. Please enter the phone number in a specified format
+			<br><br>
+			</div>
+
+
+			<label for="streetAddress1">Street Address 1*:</label>
+			<input type="text" name="streetAddress1" id="streetAddress1" placeholder="address" onblur="validateInputs(this,5,'stad')" required />
+			<br><br>
+
+			<div id="errorMsgstad" style="display: none; color: red;">
+			Invalid input for the Street Address field. Please enter valid street address.
+			<br><br> 
+			</div>
+
+			<label for="streetAddress2">Street Address 2:</label>
+			<input type="text" name="streetAddress2" id="streetAddress2" placeholder="address" />
+			<br><br>
+
+			<label for="city">City*:</label>
+			<input type="text" name="city" id="city" placeholder="city" onblur="validateInputs(this,6,'city')" required/>
+			<br><br>
+
+			<div id="errorMsgcity" style="display: none; color: red;">
+			Invalid input for City. Please enter a valid City.
+			<br><br>
+			</div>
+
+			<label for="state">State*:</label>
+			<input type="text" name="state" id="state" placeholder="state" onblur="validateInputs(this,7,'State')" required />
+			<br><br>
+
+			<div id="errorMsgState" style="display: none; color: red;">
+			Invalid input for state field. Please enter a valid State
+			<br><br>
+			</div>
+			
+            <label for="zipcode">ZipCode*:</label>
+			<input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" onblur="validateInputs(this,8,'zipcode')" required/>
+			<br><br>
+
+			<div id="errorMsgzipcode" style="display: none; color: red;">
+			Invalid input for the ZipCode field. Please enter a valid zipcode.
+			<br><br>
+			</div>
+             
+            <!-- <label for="zipcode">How did you hear*:</label> -->
+			<label for="source">How did you hear*:</label>
+			<input type='checkbox' name="source" value="facebook" onclick="onlyOne()" required/> Facebook
+            <input type='checkbox' name="source" value="google" onclick="onlyOne()" required/> Google
+            <input type='checkbox' name="source" value="yelp" onclick="onlyOne()" required/> Yelp 
+			<br><br> 
+             
+			<label for="comments">Comments*:</label>
+			<textarea name="text" id="comments" placeholder="Your comments" rows="5" cols="25" required></textarea>
+			<br><br>
+
+			<label for="drinks">Menu<span style="color: red;">*</span>:</label>
+			<select required class="myList"
+			id="myList"
+			onchange="menuSelection()">
+			<option value="">Select your favourite item</option>
+			<option value="A">Muffin</option>
+			<option value="B">Pan Cake</option>
+			<option value="C">Cappuccino</option>
+			<option value="D">Latte</option>
+			<option value="E">Croissant</option>
+		</select>
+		<br><br>
+		<div class="rates">
+			<input
+			type="checkbox"
+			id="rates"
+			style="display: none;"
+			onchange="tipsArea(this)";/>
+			<label for="cb" id="ratesl"></label>
+		</div>
+		<br><br>
+		<label for="tips" id="tips" style="display: none"
+            >Any Additional Customizations:*</label
+          >
+          <input
+            type="text"
+            id="tipst"
+            placeholder="Suggestions"
+            style="display: none"
+          />
+          <br /><br />
+			
+			<input id ="submit" type="Submit">
+			<input type="Reset" onclick="onret()"/>
+			<br><br>
+		 </form>
+		</div>
+
+		<table id="data" style="display: none; border: 2px solid black;">
+		<tr style="border: 2px solid black;">
+			<td>Title</td>
+			<td>First Name</td>
+			<td>Last Name</td>
+			<td>Email ID</td>
+			<td>Phone Number</td>
+			<td>Street Address 1</td>
+			<td>Street Address 2</td>
+			<td>City</td>
+			<td>State</td>
+			<td>Zipcode</td>
+			<td>Source</td>
+			<td>Comments</td>
+			<td>Menu</td>
+			<td>Suggestions</td>
+
+		</tr>
+		</table>
+	 </main>
+ 
+
+ <script src="script.js">
+ 
+ </script>
+
+ </body>
+</html>
